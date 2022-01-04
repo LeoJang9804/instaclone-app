@@ -1,10 +1,12 @@
 import AppLoading from 'expo-app-loading';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons'
 import * as Font from 'expo-font'
 import { Asset } from 'expo-asset';
+import LoggedOutNav from './navigators/LoggedOutNav';
+import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
+import { AppearanceProvider } from 'react-native-appearance';
+import { Appearance } from 'react-native';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -22,20 +24,8 @@ export default function App() {
     return <AppLoading startAsync={preload} onError={console.warn} onFinish={onFinish} />;
   }
   return (
-    <View style={styles.container}>
-      <Text>
-        Hello
-      </Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <LoggedOutNav />
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
